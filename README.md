@@ -16,7 +16,7 @@ Elmesélem, hogyan tudod futtatni a gépeden a projektet
 2. Nyiss meg egy basht a mappán belül, és klónozd le a projektet
 
 ```bash
-git clone https://github.com/Kaloriamanok/Kaloriamano ./
+git clone https://github.com/Kaloriamanok/Kaloriamano.git ./
 # a ./ a jelenlegi mappába klónozza
 ```
 
