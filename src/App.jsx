@@ -1,9 +1,10 @@
 import "./App.css";
+import Kaloriamano from "./components/Kaloriamano";
 
 function App() {
   return (
     <>
-      <h1>Kalóriamanó</h1>
+      <Kaloriamano />
     </>
   );
 }
