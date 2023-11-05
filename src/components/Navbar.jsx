@@ -18,7 +18,8 @@ const Navbar = () => {
       link: "/recipe",
     },
   ];
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
+
   return (
     <div className={`${styles.flexCenter} ${styles.paddingX} `}>
       <nav className="flex items-center justify-between w-full navbar">
