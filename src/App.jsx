@@ -9,7 +9,7 @@ import "./index.css";
 
 function App() {
   return (
-    <div>
+    <div className="w-full min-h-screen overflow-hidden">
       <Navbar />
       <Routes>
         {/* ez lesz a főoldal  */}
