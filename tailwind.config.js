@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        marianBlue: "#1e3888",
+        transparent: "transparent",
         marianBlue: {
           100: "#d2d7e7",
           200: "#a5afcf",
