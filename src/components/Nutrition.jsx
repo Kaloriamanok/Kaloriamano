@@ -18,7 +18,7 @@ const Nutrition = () => {
   return (
     <section>
       <div className={`flex md:flex-row flex-col w-full ${styles.paddingY}`}>
-        <div className="flex flex-col items-center justify-center flex-1 px-6 md:items-start xl:px-0 sm:px-16">
+        <div className="flex flex-col items-center justify-center flex-1 px-6 md:items-start sm:px-16">
           <h1
             className={`flex-1 font-semibold ss:text-[42px] text-[22px] ss:leading-[60px] leading-[40px] text-center md:text-left `}
           >
@@ -55,15 +55,15 @@ const Nutrition = () => {
       <div className={`flex flex-col w-full ${styles.paddingX}`}>
         {/* Ide fog jönni az api válasza, és egyéb kondicionális logika */}
         <p className={styles.paragraph}>
-          A <span className="font-bold text-verdigris-500">kalóriamanó</span>{" "}
+          A <span className="font-bold text-verdigris-500">Kalóriamanó</span>{" "}
           segítségével megtudhatod, hogy mennyi kalória volt a mai menüdben!{" "}
           <br />
           Csak annyit kell tenned, hogy leírod, hogy mit ettél, és a{" "}
-          <span className="font-bold text-verdigris-500">kalóriamanó</span>{" "}
+          <span className="font-bold text-verdigris-500">Kalóriamanó</span>{" "}
           kiszámolja neked, hogy mennyi kalória volt a menüdben! Ha tudsz, akkor
           írd le a mennyiséget is, mert akkor pontosabb lesz az eredmény! <br />
           Jelenleg a{" "}
-          <span className="font-bold text-verdigris-500">kalóriamanó</span> csak
+          <span className="font-bold text-verdigris-500">Kalóriamanó</span> csak
           angolul ért, ezért kérlek angolul próbáld az ételeket megnevezni!
           Szorgosan dolgozunk azon, hogy megtanítsuk magyarul is!
         </p>
