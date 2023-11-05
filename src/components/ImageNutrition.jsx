@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../style";
 
 const ImageNutrition = () => {
+  const [image, setImage] = useState();
+  const [imageURL, setImageURL] = useState();
   const [food, setFood] = useState({
     name: "",
     calories: "",
@@ -11,10 +13,21 @@ const ImageNutrition = () => {
     // itt fogjuk tárolni az apiból jövő adatokat
   });
 
+  const onImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     console.log("ide jön majd az api hívás");
     e.preventDefault();
   };
+  useEffect(() => {
+    if (!image) {
+      return;
+    }
+    const objectUrl = URL.createObjectURL(image);
+    setImageURL(objectUrl);
+  }, [image]);
   return (
     <section>
       <div className={`flex md:flex-row flex-col w-full ${styles.paddingY}`}>
@@ -33,14 +46,18 @@ const ImageNutrition = () => {
           className="flex flex-col items-center justify-center flex-1 px-6 md:items-end sm:px-16"
           onSubmit={handleSubmit}
         >
+          {imageURL && (
+            <img
+              src={imageURL}
+              alt="preview"
+              className="object-cover w-64 h-64 rounded-md shadow-lg"
+            />
+          )}
           <div className="relative w-full mt-2">
             <input
-              type="text"
-              name="food"
-              placeholder="írd be, mit ettél ma!"
-              required
-              value={food.name}
-              onChange={(e) => setFood({ ...food, name: e.target.value })}
+              type="file"
+              accept="image/*"
+              onChange={onImageChange}
               className={`block w-full h-12  my-6 px-4 mb-4 py-2.5 pl-2 pr-10 text-sm text-gray-700 dark:text-babyPowder-600 placeholder-gray-400 border border-verdigris-300 rounded-md  shadow-lg font-sans focus:outline-none focus:ring-0 peer focus:border-verdigris-700 font-medium `}
             />
             <button
