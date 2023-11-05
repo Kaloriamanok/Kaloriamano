@@ -1,11 +1,14 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Kaloriamano from "./components/Kaloriamano";
 
 function App() {
   return (
-    <>
-      <Kaloriamano />
-    </>
+    <div>
+      <Routes>
+        <Route path="/" element={<Kaloriamano />} />
+      </Routes>
+    </div>
   );
 }
 
