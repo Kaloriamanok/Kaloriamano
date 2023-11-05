@@ -4,6 +4,10 @@
 
 /* default css, ezt majd változtassuk meg */
 :root {
+  background-color: #1e3888;
+  color-scheme: light dark;
+
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -15,6 +19,9 @@
 }
 
 @media (prefers-color-scheme: light) {
+  :root {
+    background-color: #fffffc;
+  }
 }
 
 .dropdown-menu {
