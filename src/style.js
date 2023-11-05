@@ -2,7 +2,9 @@
 // productionban már csak úgy néz ki hogy pl: className={styles.paragraph}
 
 const styles = {
-  paragraph: "font-normal text-marianBlue text-[18px] leading-[27px]",
+  heading2:
+    "font-semibold xd:leading-[76px] leading-[66px] w-full text-[36px] leading-[44px]",
+  paragraph: "font-normal text-[18px] leading-[31px]",
 
   flexCenter: "flex justify-center items-center",
   flexStart: "flex justify-center items-start",
