@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import styles from "../style";
+import exampleApiCall from "../api/example.js";
+
+let Food=[]
 
 const Nutrition = () => {
   const [food, setFood] = useState({
@@ -11,10 +14,21 @@ const Nutrition = () => {
     // itt fogjuk tárolni az apiból jövő adatokat
   });
 
-  const handleSubmit = (e) => {
-    console.log("ide jön majd az api hívás");
-    e.preventDefault();
+  const handleSubmit = async (e)  => {
+    e.preventDefault()
+    Food=[]
+    await exampleApiCall(e.target.food.value)
+        .then((data) => {
+          for (let i = 0; i < data.items.length; i++) {
+            console.log(data.items[i])
+            Food.push(data.items[i])
+          }
+          })
+        .catch((error) => console.error("Error:", error));
+    console.log("food")
+    console.log(Food)
   };
+
   return (
     <section>
       <div className={`flex md:flex-row flex-col w-full ${styles.paddingY}`}>
@@ -52,6 +66,7 @@ const Nutrition = () => {
           </div>
         </form>
       </div>
+
       <div className={`flex flex-col w-full ${styles.paddingX}`}>
         {/* Ide fog jönni az api válasza, és egyéb kondicionális logika */}
         <p className={styles.paragraph}>
