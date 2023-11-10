@@ -32,9 +32,7 @@ const ImageNutrition = () => {
     <section>
       <div className={`flex md:flex-row flex-col w-full ${styles.paddingY}`}>
         <div className="flex flex-col items-center justify-center flex-1 px-6 md:items-start sm:px-16">
-          <h1
-            className={`flex-1 font-semibold ss:text-[42px] text-[22px] ss:leading-[60px] leading-[40px] text-center md:text-left `}
-          >
+          <h1 className={`flex-1 ${styles.heading2} text-center md:text-left `}>
             Nézd meg a blokkodon lévő ételek tápértékét a{" "}
             <br className="hidden sm:block" />{" "}
             <span className="text-verdigris-500">Kalóriamanó</span>{" "}

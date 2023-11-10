@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styles from "../style";
 import exampleApiCall from "../api/example.js";
+import styles from "../style";
 
-let Food=[]
+let Food = [];
 
 const Nutrition = () => {
   const [food, setFood] = useState({
@@ -14,28 +14,26 @@ const Nutrition = () => {
     // itt fogjuk tárolni az apiból jövő adatokat
   });
 
-  const handleSubmit = async (e)  => {
-    e.preventDefault()
-    Food=[]
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    Food = [];
     await exampleApiCall(e.target.food.value)
-        .then((data) => {
-          for (let i = 0; i < data.items.length; i++) {
-            console.log(data.items[i])
-            Food.push(data.items[i])
-          }
-          })
-        .catch((error) => console.error("Error:", error));
-    console.log("food")
-    console.log(Food)
+      .then((data) => {
+        for (let i = 0; i < data.items.length; i++) {
+          console.log(data.items[i]);
+          Food.push(data.items[i]);
+        }
+      })
+      .catch((error) => console.error("Error:", error));
+    console.log("food");
+    console.log(Food);
   };
 
   return (
     <section>
       <div className={`flex md:flex-row flex-col w-full ${styles.paddingY}`}>
         <div className="flex flex-col items-center justify-center flex-1 px-6 md:items-start sm:px-16">
-          <h1
-            className={`flex-1 font-semibold ss:text-[42px] text-[22px] ss:leading-[60px] leading-[40px] text-center md:text-left `}
-          >
+          <h1 className={`flex-1 ${styles.heading2} text-center md:text-left `}>
             Számold ki mennyi kalória volt a menüdben a{" "}
             <br className="hidden sm:block" />{" "}
             <span className="text-verdigris-500">Kalóriamanó</span>{" "}
