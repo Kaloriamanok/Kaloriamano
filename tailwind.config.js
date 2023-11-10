@@ -62,7 +62,9 @@ export default {
           900: "#333332",
         },
       },
-      fontFamily: {},
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
     screens: {
       xs: "480px",
