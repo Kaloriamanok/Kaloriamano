@@ -55,7 +55,7 @@ const Navbar = () => {
         <ul
           className={`${
             toggle ? "hidden" : "flex"
-          } sm:hidden flex-col items-center mx-auto list-none absolute top-32 left-0 right-0 w-screen bg-white z-[1] `}
+          } sm:hidden flex-col items-center dark:bg-marianBlue-500 mx-auto list-none absolute top-32 left-0 right-0 w-screen bg-white z-[1] `}
         >
           {links.map((link, index) => (
             <li
