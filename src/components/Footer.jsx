@@ -1,4 +1,6 @@
 import React from "react";
+import { logo } from "../assets";
+import styles from "../style";
 
 const Footer = () => {
   const creators = [
@@ -20,7 +22,7 @@ const Footer = () => {
     },
   ];
   /* links and names to our github and jira, etc */
-  const reference = [
+  const references = [
     {
       name: "GitHub",
       link: "https://github.com/Kaloriamanok/Kaloriamano",
@@ -29,44 +31,42 @@ const Footer = () => {
       name: "Jira",
       link: "https://kaloriamanok.atlassian.net/",
     },
+    {
+      name: "CalorieNinja",
+      link: "https://calorieninjas.com/",
+    },
   ];
 
   return (
-    <footer>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>Készítők</h3>
-            <ul style={{ fontSize: "12px", listStyle: "none", padding: 0 }}>
-              {creators.map((creator, index) => (
-                <li key={index}>{creator}</li>
-              ))}
-            </ul>
-          </div>
+    <footer className="flex flex-col items-center justify-between w-full px-0 py-10 mt-auto xs:px-10 xl:px-60 ss:flex-row">
+      <div>
+        <img src={logo} alt="" className="w-[256px] h-[256px] " />
+      </div>
+      <div className="flex flex-col items-start space-y-8 xs:space-y-0 xs:space-x-20 sm:space-x-32 xs:flex-row ">
+        <div className="flex flex-col ">
+          <h3 className="font-[16px] pb-[10px] font-poppins">Készítők</h3>
+          <ul className="list-none font-[12px] font-poppins  ">
+            {creators.map((creator, index) => (
+              <a href={creator.link}>
+                <li key={index} className={`${styles.textHover} mt-1`}>
+                  {creator.name}
+                </li>
+              </a>
+            ))}
+          </ul>
+        </div>
 
-          <div className="col-md-3">
-            <h3 style={{ fontSize: "16px", marginBottom: "20px" }}>
-              Referenciák
-            </h3>
-          </div>
-
-          <div className="col-md-3">
-            <a
-              href="https://github.com/Kaloriamanok/Kaloriamano"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: "16px",
-                color: "#7FDBFF",
-                textDecoration: "none",
-                transition: "color 0.2s",
-                display: "block",
-                marginTop: "10px",
-              }}
-            >
-              Kalóriamanó GitHub oldal
-            </a>
-          </div>
+        <div className="flex flex-col">
+          <h3 className="font-[16px] pb-[10px] font-poppins">Referenciák</h3>
+          <ul className="list-none font-[12px]  font-poppins">
+            {references.map((reference, index) => (
+              <a href={reference.link}>
+                <li key={index} className={`${styles.textHover} mt-1`}>
+                  {reference.name}
+                </li>
+              </a>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>
