@@ -9,7 +9,7 @@ import "./index.css";
 
 function App() {
   return (
-    <div className="w-full min-h-screen overflow-hidden">
+    <div className="flex flex-col w-full min-h-screen overflow-hidden">
       <Navbar />
       <Routes>
         {/* ez lesz a főoldal  */}
