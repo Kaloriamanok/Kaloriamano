@@ -34,3 +34,8 @@
 .dropdown-menu.show {
   transform: translateY(0);
 }
+
+footer {
+  background-color: #1e3870;
+  border: solid #1e3840; 
+}
