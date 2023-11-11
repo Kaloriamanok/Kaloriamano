@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "../style";
+import getImageNutritionByName from "../api/imagenutrition";
+
+let Food=[]
 
 const ImageNutrition = () => {
   const [image, setImage] = useState();
@@ -17,9 +20,15 @@ const ImageNutrition = () => {
     setImage(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    console.log("ide jön majd az api hívás");
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await getImageNutritionByName(image).then((data)=>{
+      for (let i = 0; i < data.items.length; i++) {
+        console.log(data.items[i]);
+        Food.push(data.items[i])
+      }
+    })
+
   };
   useEffect(() => {
     if (!image) {
