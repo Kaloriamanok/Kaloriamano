@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../style";
+import getRecipeByName from "../api/recipe";
 
 const Recipe = () => {
   const [food, setFood] = useState({
@@ -11,10 +12,15 @@ const Recipe = () => {
     // itt fogjuk tárolni az apiból jövő adatokat.
   });
 
-  const handleSubmit = (e) => {
-    console.log("ide jön majd az api hívás");
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    await getRecipeByName(e.target.food.value)
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((error) => console.error("Error:", error));
   };
+  
   return (
     <section>
       <div className={`flex md:flex-row flex-col w-full ${styles.paddingY}`}>
