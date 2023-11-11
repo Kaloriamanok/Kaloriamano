@@ -9,7 +9,7 @@ const getRecipeByName = async (query) => {
         'Content-Type': 'application/json',
       },
     })
-      .then((response) => console.log(response.json()))
+      .then((response) => response.json())
       .then(data => console.log(data))
       .catch((error) => console.error("Error:", error));
   };
