@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import exampleApiCall from "../api/example.js";
 import styles from "../style";
+import getNutritionByName from "../api/nutrition.js";
 
 let Food = [];
 
@@ -17,7 +17,7 @@ const Nutrition = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     Food = [];
-    await exampleApiCall(e.target.food.value)
+    await getNutritionByName(e.target.food.value)
       .then((data) => {
         for (let i = 0; i < data.items.length; i++) {
           console.log(data.items[i]);

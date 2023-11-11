@@ -1,10 +1,16 @@
 import exampleApiCall from "../api/example.js";
+import getImageNutritionByName from "./imagenutrition.js";
+import getRecipeByName from "./recipe.js";
 
-const testQuery = "apple";
+const testQuery = "pizza";
 
 exampleApiCall(testQuery)
   .then((data) => console.log(data))
   .catch((error) => console.error("Error:", error));
+
+getRecipeByName(testQuery)
+.then((data) => console.log(data))
+.catch((error) => console.error("Error:", error));
 
 /*
     ezzel tesztelheted hogy az api hívás működik-e
