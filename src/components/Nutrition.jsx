@@ -1,22 +1,18 @@
 import React, { useState } from "react";
-import styles from "../style";
 import getNutritionByName from "../api/nutrition.js";
-
-let Food = [];
+import styles from "../style";
 
 const Nutrition = () => {
   const [food, setFood] = useState({
     name: "",
-    calories: "",
-    carbs: "",
-    protein: "",
-    fat: "",
-    // itt fogjuk tárolni az apiból jövő adatokat
+    response: [],
   });
+
+  const [allFood, setAllFood] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    Food = [];
+    let Food = [];
     await getNutritionByName(e.target.food.value)
       .then((data) => {
         for (let i = 0; i < data.items.length; i++) {
@@ -25,8 +21,14 @@ const Nutrition = () => {
         }
       })
       .catch((error) => console.error("Error:", error));
-    console.log("food");
-    console.log(Food);
+
+    if (Food.length > 0) {
+      setFood({ name: e.target.food.value, response: Food });
+      setAllFood([...allFood, food]);
+      localStorage.setItem("allFood", JSON.stringify(allFood));
+      console.log(allFood);
+      console.log(food);
+    }
   };
 
   return (
