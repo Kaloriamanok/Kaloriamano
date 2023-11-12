@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import getNutritionByName from "../api/nutrition.js";
 import styles from "../style";
 
@@ -26,10 +26,15 @@ const Nutrition = () => {
       setFood({ name: e.target.food.value, response: Food });
       setAllFood([...allFood, food]);
       localStorage.setItem("allFood", JSON.stringify(allFood));
-      console.log(allFood);
-      console.log(food);
     }
   };
+
+  useEffect(() => {
+    const data = localStorage.getItem("allFood");
+    if (data) {
+      setAllFood(JSON.parse(data));
+    }
+  }, []);
 
   return (
     <section>
