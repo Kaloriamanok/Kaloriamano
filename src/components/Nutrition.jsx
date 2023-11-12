@@ -3,38 +3,45 @@ import getNutritionByName from "../api/nutrition.js";
 import styles from "../style";
 
 const Nutrition = () => {
-  const [food, setFood] = useState({
-    name: "",
-    response: [],
-  });
+  const [food, setFood] = useState("");
+
+  const [selectedFood, setSelectedFood] = useState({ name: "", response: [] });
 
   const [allFood, setAllFood] = useState([]);
+
+  useEffect(() => {
+    console.log(allFood);
+    localStorage.setItem("allFood", JSON.stringify(allFood));
+    console.log(localStorage.getItem("allFood"));
+  }, [allFood]);
+
+  useEffect(() => {
+    console.log(JSON.parse(localStorage.getItem("allFood")));
+    const data = JSON.parse(localStorage.getItem("allFood"));
+    if (data) {
+      setAllFood(data);
+      console.log(allFood);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let Food = [];
     await getNutritionByName(e.target.food.value)
       .then((data) => {
-        for (let i = 0; i < data.items.length; i++) {
-          console.log(data.items[i]);
-          Food.push(data.items[i]);
-        }
+        Food = data.items;
       })
       .catch((error) => console.error("Error:", error));
 
     if (Food.length > 0) {
-      setFood({ name: e.target.food.value, response: Food });
-      setAllFood([...allFood, food]);
-      localStorage.setItem("allFood", JSON.stringify(allFood));
+      const newFood = { name: e.target.food.value, response: Food };
+      setSelectedFood(newFood);
+      setAllFood((prevAllFood) => [...prevAllFood, newFood]);
+      setFood("");
+    } else {
+      setFood("Nincs ilyen étel az adatbázisban!");
     }
   };
-
-  useEffect(() => {
-    const data = localStorage.getItem("allFood");
-    if (data) {
-      setAllFood(JSON.parse(data));
-    }
-  }, []);
 
   return (
     <section>
@@ -58,8 +65,8 @@ const Nutrition = () => {
               name="food"
               placeholder="írd be, mit ettél ma!"
               required
-              value={food.name}
-              onChange={(e) => setFood({ ...food, name: e.target.value })}
+              value={food}
+              onChange={(e) => setFood(e.target.value)}
               className={`block w-full h-12  my-6 px-4 mb-4 py-2.5 pl-2 pr-10 text-sm text-gray-700 dark:text-babyPowder-600 placeholder-gray-400 border border-verdigris-300 rounded-md  shadow-lg font-sans focus:outline-none focus:ring-0 peer focus:border-verdigris-700 font-medium `}
             />
             <button
@@ -70,6 +77,45 @@ const Nutrition = () => {
             </button>
           </div>
         </form>
+      </div>
+
+      <div
+        className={`flex flex-col py-6 md:py-16 md:flex-row w-full ${styles.paddingX}`}
+      >
+        <div className="flex flex-col items-center justify-center px-6 md:items-start sm:px-16">
+          <h2 className={`  text-center md:text-left `}>
+            Az eddigi keresések:
+          </h2>
+          <ul className="flex flex-col items-center justify-start px-6 overflow-auto bg-gray-200 md:items-start sm:px-16 h-96">
+            {allFood.map((thisFood, index) => (
+              <li
+                key={index}
+                className={` text-center md:text-left `}
+                onClick={() =>
+                  setSelectedFood({
+                    name: thisFood.name,
+                    response: thisFood.response,
+                  })
+                }
+              >
+                {thisFood.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col flex-1">
+          <h2 className={` text-center md:text-left `}>
+            A kiválasztott étel adatai:
+          </h2>
+
+          <ul className="flex flex-col items-center justify-center px-6 md:items-start sm:px-16">
+            {selectedFood.response.map((nutrients, index) => (
+              <li key={index} className={`  text-center md:text-left `}>
+                {nutrients.calories}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className={`flex flex-col w-full ${styles.paddingX}`}>
