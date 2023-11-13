@@ -1,5 +1,5 @@
 import React from "react";
-import { logo } from "../assets";
+import { footerkep, logo } from "../assets";
 import styles from "../style";
 
 const Footer = () => {
@@ -40,7 +40,7 @@ const Footer = () => {
   return (
     <footer className="flex flex-col items-center justify-between w-full px-0 py-10 mt-auto xs:px-10 xl:px-60 ss:flex-row">
       <div>
-        <img src={logo} alt="" className="w-[256px] h-[256px] " />
+        <img src={footerkep} alt="" className="w-[900px] h-[450px] " />
       </div>
       <div className="flex flex-col items-start space-y-8 xs:space-y-0 xs:space-x-20 sm:space-x-32 xs:flex-row ">
         <div className="flex flex-col ">
