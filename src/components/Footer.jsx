@@ -40,7 +40,11 @@ const Footer = () => {
   return (
     <footer className="flex flex-col items-center justify-between w-full px-0 py-10 mt-auto xs:px-10 xl:px-60 ss:flex-row">
       <div>
-        <img src={footerkep} alt="" className="w-[900px] h-[450px] " />
+        <img
+          src={footerkep}
+          alt=""
+          className="h-[150px] sm:h-[200px] lg:h-[400px] "
+        />
       </div>
       <div className="flex flex-col items-start space-y-8 xs:space-y-0 xs:space-x-20 sm:space-x-32 xs:flex-row ">
         <div className="flex flex-col ">
