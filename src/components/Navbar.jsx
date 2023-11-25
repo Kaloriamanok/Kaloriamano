@@ -1,6 +1,6 @@
 import { Cross1Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { logoSzoveg } from "../assets";
 import styles from "../style";
 const Navbar = () => {
@@ -18,6 +18,8 @@ const Navbar = () => {
     //   link: "/recipe",
     // },
   ];
+  const location = useLocation();
+
   const [toggle, setToggle] = useState(true);
 
   return (
@@ -32,7 +34,16 @@ const Navbar = () => {
               key={index}
               className={`${index === link.length - 1 ? "mr-0" : "mr-8"}`}
             >
-              <Link to={link.link}>{link.name}</Link>
+              <Link
+                to={link.link}
+                className={
+                  location.pathname === link.link
+                    ? "bg-vermillion-500 p-1.5 rounded-full text-marianBlue-500 font-bold"
+                    : ""
+                }
+              >
+                {link.name}
+              </Link>
             </li>
           ))}
         </ul>
@@ -63,7 +74,16 @@ const Navbar = () => {
               className={`${index === link.length - 1 ? "mb-0" : "mb-4"}`}
               onClick={() => setToggle((prev) => !prev)}
             >
-              <Link to={link.link}>{link.name}</Link>
+              <Link
+                to={link.link}
+                className={
+                  location.pathname === link.link
+                    ? "bg-vermillion-500 p-1.5 rounded-full text-marianBlue-500 font-bold"
+                    : ""
+                }
+              >
+                {link.name}
+              </Link>
             </li>
           ))}
         </ul>
