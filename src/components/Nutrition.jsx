@@ -83,25 +83,31 @@ const Nutrition = () => {
         className={`flex flex-col py-6 md:py-16 md:flex-row w-full ${styles.paddingX}`}
       >
         <div className="flex flex-col items-center justify-center px-6 md:items-start sm:px-16">
-          <h2 className={`  text-center md:text-left `}>
+          <h2 className="font-semibold text-center dark:text-white md:text-left">
             Az eddigi keresések:
           </h2>
-          <ul className="flex flex-col items-center justify-start px-6 overflow-auto bg-gray-200 md:items-start sm:px-16 h-96">
-            {allFood.map((thisFood, index) => (
-              <li
-                key={index}
-                className={` text-center md:text-left `}
-                onClick={() =>
-                  setSelectedFood({
-                    name: thisFood.name,
-                    response: thisFood.response,
-                  })
-                }
-              >
-                {thisFood.name}
-              </li>
-            ))}
-          </ul>
+          <div className="w-64 h-64 p-4 overflow-auto rounded-md bg-verdigris-500">
+            <ul className="flex flex-col space-y-2">
+              {allFood.map((thisFood, index) => (
+                <li
+                  key={index}
+                  className={`text-center md:text-left p-2 rounded-md ${
+                    selectedFood.name === thisFood.name
+                      ? "bg-marianBlue-400 text-white font-medium"
+                      : "bg-verdigris-400 text-black font-normal duration-150 ease-linear hover:font-semibold hover:bg-marianBlue-300 hover:text-white"
+                  }`}
+                  onClick={() =>
+                    setSelectedFood({
+                      name: thisFood.name,
+                      response: thisFood.response,
+                    })
+                  }
+                >
+                  {thisFood.name}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <div className="flex flex-col flex-1">
           <h2 className={` text-center md:text-left `}>
