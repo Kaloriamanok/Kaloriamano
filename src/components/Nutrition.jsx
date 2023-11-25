@@ -83,10 +83,10 @@ const Nutrition = () => {
         className={`flex flex-col py-6 md:py-16 md:flex-row w-full ${styles.paddingX}`}
       >
         <div className="flex flex-col items-center justify-center px-6 md:items-start sm:px-16">
-          <h2 className="font-semibold text-center dark:text-white md:text-left">
-            Az eddigi keresések:
-          </h2>
           <div className="w-64 h-64 p-4 overflow-auto rounded-md bg-verdigris-500">
+            <h2 className="font-semibold text-center dark:text-white md:text-left">
+              Az eddigi keresések:
+            </h2>
             <ul className="flex flex-col space-y-2">
               {allFood.map((thisFood, index) => (
                 <li
@@ -109,18 +109,51 @@ const Nutrition = () => {
             </ul>
           </div>
         </div>
-        <div className="flex flex-col flex-1">
-          <h2 className={` text-center md:text-left `}>
+        <div className="flex flex-col flex-1 p-4 bg-gray-800 rounded-md">
+          <h2 className="text-center text-white md:text-left">
             A kiválasztott étel adatai:
           </h2>
 
-          <ul className="flex flex-col items-center justify-center px-6 md:items-start sm:px-16">
-            {selectedFood.response.map((nutrients, index) => (
-              <li key={index} className={`  text-center md:text-left `}>
-                {nutrients.calories}
-              </li>
-            ))}
-          </ul>
+          <div className="overflow-auto">
+            <table className="w-full text-white table-auto">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Calories</th>
+                  <th>Serving Size (g)</th>
+                  <th>Total Fat (g)</th>
+                  <th>Saturated Fat (g)</th>
+                  <th>Protein (g)</th>
+                  <th>Sodium (mg)</th>
+                  <th>Potassium (mg)</th>
+                  <th>Cholesterol (mg)</th>
+                  <th>Total Carbohydrates (g)</th>
+                  <th>Fiber (g)</th>
+                  <th>Sugar (g)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedFood.response.map((nutrients, index) => (
+                  <tr key={index} className="border-t border-gray-600">
+                    <td className="text-center">{nutrients.name}</td>
+                    <td className="text-center">{nutrients.calories}</td>
+                    <td className="text-center">{nutrients.serving_size_g}</td>
+                    <td className="text-center">{nutrients.fat_total_g}</td>
+                    <td className="text-center">{nutrients.fat_saturated_g}</td>
+                    <td className="text-center">{nutrients.protein_g}</td>
+                    <td className="text-center">{nutrients.sodium_mg}</td>
+                    <td className="text-center">{nutrients.potassium_mg}</td>
+                    <td className="text-center">{nutrients.cholesterol_mg}</td>
+                    <td className="text-center">
+                      {nutrients.carbohydrates_total_g}
+                    </td>
+                    <td className="text-center">{nutrients.fiber_g}</td>
+                    <td className="text-center">{nutrients.sugar_g}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
