@@ -17,7 +17,8 @@ function App() {
         {/* a nevek a calorieninja-ból jönnek (api referencet ha megnézed majd) */}
         <Route path="nutrition" element={<Nutrition />} />
         <Route path="imagenutrition" element={<ImageNutrition />} />
-        <Route path="recipe" element={<Recipe />} />
+        {/* Jelenleg a recipe oldal nem működik, mert a calorieninja api nem válaszol 
+        <Route path="recipe" element={<Recipe />} /> */}
       </Routes>
       <Footer />
     </div>

@@ -13,10 +13,10 @@ const Navbar = () => {
       name: "Kép Tápérték",
       link: "/imagenutrition",
     },
-    {
-      name: "Recept",
-      link: "/recipe",
-    },
+    // {
+    //   name: "Recept",
+    //   link: "/recipe",
+    // },
   ];
   const [toggle, setToggle] = useState(true);
 
