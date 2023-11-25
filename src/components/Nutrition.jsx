@@ -109,52 +109,88 @@ const Nutrition = () => {
             </ul>
           </div>
         </div>
-        <div className="flex flex-col flex-1 p-4 bg-gray-800 rounded-md">
-          <h2 className="text-center text-white md:text-left">
-            A kiválasztott étel adatai:
-          </h2>
+        {selectedFood.name !== "" && (
+          <div className="w-full py-6 overflow-auto rounded-md md:py-0">
+            <div className="flex flex-col flex-1 p-4 bg-gray-800 min-h-max min-w-max">
+              <h2 className="text-center text-white md:text-left">
+                A kiválasztott étel adatai:
+              </h2>
 
-          <div className="overflow-auto">
-            <table className="w-full text-white table-auto">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Calories</th>
-                  <th>Serving Size (g)</th>
-                  <th>Total Fat (g)</th>
-                  <th>Saturated Fat (g)</th>
-                  <th>Protein (g)</th>
-                  <th>Sodium (mg)</th>
-                  <th>Potassium (mg)</th>
-                  <th>Cholesterol (mg)</th>
-                  <th>Total Carbohydrates (g)</th>
-                  <th>Fiber (g)</th>
-                  <th>Sugar (g)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {selectedFood.response.map((nutrients, index) => (
-                  <tr key={index} className="border-t border-gray-600">
-                    <td className="text-center">{nutrients.name}</td>
-                    <td className="text-center">{nutrients.calories}</td>
-                    <td className="text-center">{nutrients.serving_size_g}</td>
-                    <td className="text-center">{nutrients.fat_total_g}</td>
-                    <td className="text-center">{nutrients.fat_saturated_g}</td>
-                    <td className="text-center">{nutrients.protein_g}</td>
-                    <td className="text-center">{nutrients.sodium_mg}</td>
-                    <td className="text-center">{nutrients.potassium_mg}</td>
-                    <td className="text-center">{nutrients.cholesterol_mg}</td>
-                    <td className="text-center">
-                      {nutrients.carbohydrates_total_g}
-                    </td>
-                    <td className="text-center">{nutrients.fiber_g}</td>
-                    <td className="text-center">{nutrients.sugar_g}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+              <div className="flex flex-row py-2 text-white border-b border-gray-6000">
+                <div className="w-1/12 px-2 font-bold text-center ">Név</div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Kalória
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Adag (g)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Zsír (g)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Telített zsír (g)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Protein (g)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Nátrium (mg)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Kálium (mg)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Koleszterin (mg)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Szénhidrát (g)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Rost (g)
+                </div>
+                <div className="w-1/12 px-2 font-bold text-center ">
+                  Cukor (g)
+                </div>
+              </div>
+
+              {selectedFood.response.map((nutrients, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row py-2 text-white border-b border-gray-600"
+                >
+                  <div className="w-1/12 text-center">{nutrients.name}</div>
+                  <div className="w-1/12 text-center">{nutrients.calories}</div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.serving_size_g}
+                  </div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.fat_total_g}
+                  </div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.fat_saturated_g}
+                  </div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.protein_g}
+                  </div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.sodium_mg}
+                  </div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.potassium_mg}
+                  </div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.cholesterol_mg}
+                  </div>
+                  <div className="w-1/12 text-center">
+                    {nutrients.carbohydrates_total_g}
+                  </div>
+                  <div className="w-1/12 text-center">{nutrients.fiber_g}</div>
+                  <div className="w-1/12 text-center">{nutrients.sugar_g}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className={`flex flex-col w-full ${styles.paddingX}`}>
