@@ -38,7 +38,7 @@ const Navbar = () => {
                 to={link.link}
                 className={
                   location.pathname === link.link
-                    ? "bg-vermillion-500 p-1.5 rounded-full text-marianBlue-500 font-bold"
+                    ? "bg-verdigris-500 dark:bg-vermillion-500 p-1.5 rounded-full text-white dark:text-marianBlue-500 font-bold"
                     : ""
                 }
               >
@@ -78,7 +78,7 @@ const Navbar = () => {
                 to={link.link}
                 className={
                   location.pathname === link.link
-                    ? "bg-vermillion-500 p-1.5 rounded-full text-marianBlue-500 font-bold"
+                    ? "bg-verdigris-500 dark:bg-vermillion-500 p-1.5 rounded-full text-white dark:text-marianBlue-500 font-bold"
                     : ""
                 }
               >
