@@ -6,6 +6,7 @@ const ImageNutrition = () => {
   const [image, setImage] = useState();
   const [imageURL, setImageURL] = useState();
   const [Food, setFood] = useState([]);
+  const [noResponse, setNoResponse] = useState(false);
   const onImageChange = (e) => {
     setImage(e.target.files[0]);
   };
@@ -16,11 +17,15 @@ const ImageNutrition = () => {
     await getImageNutritionByName(image).then((data) => {
       setFood(data.items);
     });
-    console.log(Food);
 
     e.target.reset();
     setImage();
     setImageURL();
+    if (Food.length === 0) {
+      setNoResponse(true);
+    } else {
+      setNoResponse(false);
+    }
   };
   useEffect(() => {
     if (!image) {
@@ -177,10 +182,11 @@ const ImageNutrition = () => {
           </div>
         </div>
       ) : (
-        <p className="text-xs text-center font-poppins ">
-          ha megpróbáltad feltölteni a képet, és nem jelenik meg a táblázat itt
-          akkor valami nem sikerült
-        </p>
+        noResponse && (
+          <p className="p-2 font-semibold text-center text-vermillion-500 font-poppins">
+            A kalóriamanó nem ismeri fel a blokkon lévő ételeket!
+          </p>
+        )
       )}
 
       <div className={`flex flex-col w-full ${styles.paddingX}`}>
