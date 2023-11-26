@@ -78,121 +78,129 @@ const Nutrition = () => {
           </div>
         </form>
       </div>
+      {/* ha van eddigi keresés, akkor megjelenik a lista, és a kiválasztott étel */}
 
-      <div
-        className={`flex flex-col py-6 md:py-16 md:flex-row w-full ${styles.paddingX}`}
-      >
-        <div className="flex flex-col items-center justify-center px-6 md:items-start sm:px-16">
-          <div className="w-64 h-64 p-4 overflow-auto rounded-md bg-verdigris-500">
-            <h2 className="font-semibold text-center dark:text-white md:text-left">
-              Az eddigi keresések:
-            </h2>
-            <ul className="flex flex-col space-y-2">
-              {allFood.map((thisFood, index) => (
-                <li
-                  key={index}
-                  className={`text-center md:text-left p-2 rounded-md ${
-                    selectedFood.name === thisFood.name
-                      ? "bg-marianBlue-400 text-white font-medium"
-                      : "bg-verdigris-400 text-black font-normal duration-150 ease-linear hover:font-semibold hover:bg-marianBlue-300 hover:text-white"
-                  }`}
-                  onClick={() =>
-                    setSelectedFood({
-                      name: thisFood.name,
-                      response: thisFood.response,
-                    })
-                  }
-                >
-                  {thisFood.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        {selectedFood.name !== "" && (
-          <div className="w-full py-6 overflow-auto rounded-md md:py-0">
-            <div className="flex flex-col flex-1 p-4 bg-gray-800 min-h-max min-w-max">
-              <h2 className="text-center text-white md:text-left">
-                A kiválasztott étel adatai:
+      {allFood.length > 0 && (
+        <div
+          className={`flex flex-col py-6 md:py-16 md:flex-row w-full ${styles.paddingX}`}
+        >
+          <div className="flex flex-col items-center justify-center px-6 md:items-start sm:px-16">
+            <div className="w-64 h-64 p-4 overflow-auto rounded-md bg-verdigris-500">
+              <h2 className="font-semibold text-center dark:text-white md:text-left">
+                Az eddigi keresések:
               </h2>
-
-              <div className="flex flex-row py-2 text-white border-b border-gray-6000">
-                <div className="w-1/12 px-2 font-bold text-center ">Név</div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Kalória
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Adag (g)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Zsír (g)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Telített zsír (g)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Protein (g)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Nátrium (mg)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Kálium (mg)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Koleszterin (mg)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Szénhidrát (g)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Rost (g)
-                </div>
-                <div className="w-1/12 px-2 font-bold text-center ">
-                  Cukor (g)
-                </div>
-              </div>
-
-              {selectedFood.response.map((nutrients, index) => (
-                <div
-                  key={index}
-                  className="flex flex-row py-2 text-white border-b border-gray-600"
-                >
-                  <div className="w-1/12 text-center">{nutrients.name}</div>
-                  <div className="w-1/12 text-center">{nutrients.calories}</div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.serving_size_g}
-                  </div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.fat_total_g}
-                  </div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.fat_saturated_g}
-                  </div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.protein_g}
-                  </div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.sodium_mg}
-                  </div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.potassium_mg}
-                  </div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.cholesterol_mg}
-                  </div>
-                  <div className="w-1/12 text-center">
-                    {nutrients.carbohydrates_total_g}
-                  </div>
-                  <div className="w-1/12 text-center">{nutrients.fiber_g}</div>
-                  <div className="w-1/12 text-center">{nutrients.sugar_g}</div>
-                </div>
-              ))}
+              <ul className="flex flex-col space-y-2">
+                {allFood.map((thisFood, index) => (
+                  <li
+                    key={index}
+                    className={`text-center md:text-left p-2 rounded-md ${
+                      selectedFood.name === thisFood.name
+                        ? "bg-marianBlue-400 text-white font-medium"
+                        : "bg-verdigris-400 text-black font-normal duration-150 ease-linear hover:font-semibold hover:bg-marianBlue-300 hover:text-white"
+                    }`}
+                    onClick={() =>
+                      setSelectedFood({
+                        name: thisFood.name,
+                        response: thisFood.response,
+                      })
+                    }
+                  >
+                    {thisFood.name}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        )}
-      </div>
+          {selectedFood.name !== "" && (
+            <div className="w-full py-6 overflow-auto rounded-md md:py-0">
+              <div className="flex flex-col flex-1 p-4 bg-gray-800 min-h-max min-w-max">
+                <h2 className="text-center text-white md:text-left">
+                  A kiválasztott étel adatai:
+                </h2>
 
+                <div className="flex flex-row py-2 text-white border-b border-gray-6000">
+                  <div className="w-1/12 px-2 font-bold text-center ">Név</div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Kalória
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Adag (g)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Zsír (g)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Telített zsír (g)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Protein (g)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Nátrium (mg)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Kálium (mg)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Koleszterin (mg)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Szénhidrát (g)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Rost (g)
+                  </div>
+                  <div className="w-1/12 px-2 font-bold text-center ">
+                    Cukor (g)
+                  </div>
+                </div>
+
+                {selectedFood.response.map((nutrients, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-row py-2 text-white border-b border-gray-600"
+                  >
+                    <div className="w-1/12 text-center">{nutrients.name}</div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.calories}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.serving_size_g}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.fat_total_g}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.fat_saturated_g}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.protein_g}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.sodium_mg}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.potassium_mg}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.cholesterol_mg}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.carbohydrates_total_g}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.fiber_g}
+                    </div>
+                    <div className="w-1/12 text-center">
+                      {nutrients.sugar_g}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
       <div className={`flex flex-col w-full ${styles.paddingX}`}>
         {/* Ide fog jönni az api válasza, és egyéb kondicionális logika */}
         <p className={styles.paragraph}>
