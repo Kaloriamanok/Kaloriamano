@@ -22,7 +22,7 @@ function App() {
         <Route path="recipe" element={<Recipe />} /> */}
 
         {/* ez a 404 oldal, ha nem találja a routot */}
-        <Route path="*" element={<Error404 />} />
+        <Route path="/*" element={<Error404 />} />
       </Routes>
       <Footer />
     </div>
