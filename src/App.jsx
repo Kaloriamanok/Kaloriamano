@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import Error404 from "./components/Error404";
 import Footer from "./components/Footer";
 import ImageNutrition from "./components/ImageNutrition";
 import Kaloriamano from "./components/Kaloriamano";
@@ -19,6 +20,9 @@ function App() {
         <Route path="imagenutrition" element={<ImageNutrition />} />
         {/* Jelenleg a recipe oldal nem működik, mert a calorieninja api nem válaszol 
         <Route path="recipe" element={<Recipe />} /> */}
+
+        {/* ez a 404 oldal, ha nem találja a routot */}
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </div>
