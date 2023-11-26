@@ -10,19 +10,17 @@ const Nutrition = () => {
   const [allFood, setAllFood] = useState([]);
 
   useEffect(() => {
-    console.log(allFood);
-    localStorage.setItem("allFood", JSON.stringify(allFood));
-    console.log(localStorage.getItem("allFood"));
-  }, [allFood]);
-
-  useEffect(() => {
-    console.log(JSON.parse(localStorage.getItem("allFood")));
     const data = JSON.parse(localStorage.getItem("allFood"));
     if (data) {
       setAllFood(data);
-      console.log(allFood);
     }
   }, []);
+
+  useEffect(() => {
+    if (allFood.length > 0) {
+      localStorage.setItem("allFood", JSON.stringify(allFood));
+    }
+  }, [allFood]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
