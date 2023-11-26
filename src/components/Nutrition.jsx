@@ -153,6 +153,38 @@ const Nutrition = () => {
                   </div>
                 </div>
 
+                {selectedFood.response.length > 1 && (
+                  <div className="flex flex-row py-2 text-white border-b border-gray-600">
+                    <div className="w-1/12 font-bold text-center">
+                      Összesen:
+                    </div>
+                    {Object.entries(
+                      selectedFood.response.reduce((total, item) => {
+                        [
+                          "calories",
+                          "serving_size_g",
+                          "fat_total_g",
+                          "fat_saturated_g",
+                          "protein_g",
+                          "sodium_mg",
+                          "potassium_mg",
+                          "cholesterol_mg",
+                          "carbohydrates_total_g",
+                          "fiber_g",
+                          "sugar_g",
+                        ].forEach((key) => {
+                          total[key] = (total[key] || 0) + item[key];
+                        });
+                        return total;
+                      }, {})
+                    ).map(([key, value], index) => (
+                      <div key={index} className="w-1/12 text-center">
+                        {Math.round(value * 100) / 100}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {selectedFood.response.map((nutrients, index) => (
                   <div
                     key={index}
@@ -160,37 +192,37 @@ const Nutrition = () => {
                   >
                     <div className="w-1/12 text-center">{nutrients.name}</div>
                     <div className="w-1/12 text-center">
-                      {nutrients.calories}
+                      {Math.round(nutrients.calories * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.serving_size_g}
+                      {Math.round(nutrients.serving_size_g * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.fat_total_g}
+                      {Math.round(nutrients.fat_total_g * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.fat_saturated_g}
+                      {Math.round(nutrients.fat_saturated_g * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.protein_g}
+                      {Math.round(nutrients.protein_g * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.sodium_mg}
+                      {Math.round(nutrients.sodium_mg * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.potassium_mg}
+                      {Math.round(nutrients.potassium_mg * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.cholesterol_mg}
+                      {Math.round(nutrients.cholesterol_mg * 100) / 100}{" "}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.carbohydrates_total_g}
+                      {Math.round(nutrients.carbohydrates_total_g * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.fiber_g}
+                      {Math.round(nutrients.fiber_g * 100) / 100}
                     </div>
                     <div className="w-1/12 text-center">
-                      {nutrients.sugar_g}
+                      {Math.round(nutrients.sugar_g * 100) / 100}
                     </div>
                   </div>
                 ))}
