@@ -1,3 +1,4 @@
+import { TrashIcon } from "@radix-ui/react-icons";
 import React, { useEffect, useState } from "react";
 import getNutritionByName from "../api/nutrition.js";
 import styles from "../style";
@@ -91,7 +92,7 @@ const Nutrition = () => {
                 {allFood.map((thisFood, index) => (
                   <li
                     key={index}
-                    className={`text-center md:text-left p-2 rounded-md ${
+                    className={`text-center flex flex-row justify-between md:text-left p-2 rounded-md ${
                       selectedFood.name === thisFood.name
                         ? "bg-marianBlue-400 text-white font-medium"
                         : "bg-verdigris-400 text-black font-normal duration-150 ease-linear hover:font-semibold hover:bg-marianBlue-300 hover:text-white"
@@ -104,6 +105,16 @@ const Nutrition = () => {
                     }
                   >
                     {thisFood.name}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setAllFood(
+                          allFood.filter((food) => food.name !== thisFood.name)
+                        );
+                      }}
+                    >
+                      <TrashIcon className="w-4 h-4 ml-2 text-vermillion-500" />
+                    </button>
                   </li>
                 ))}
               </ul>
