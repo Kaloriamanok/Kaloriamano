@@ -1,20 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styles from "../style";
 import getImageNutritionByName from "../api/imagenutrition";
-
-let Food=[]
+import styles from "../style";
 
 const ImageNutrition = () => {
+  let Food = [];
   const [image, setImage] = useState();
   const [imageURL, setImageURL] = useState();
-  const [food, setFood] = useState({
-    name: "",
-    calories: "",
-    carbs: "",
-    protein: "",
-    fat: "",
-    // itt fogjuk tárolni az apiból jövő adatokat
-  });
 
   const onImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -22,13 +13,15 @@ const ImageNutrition = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await getImageNutritionByName(image).then((data)=>{
-      for (let i = 0; i < data.items.length; i++) {
-        console.log(data.items[i]);
-        Food.push(data.items[i])
-      }
-    })
+    Food = [];
+    await getImageNutritionByName(image).then((data) => {
+      Food.push(data.items);
+    });
+    console.log(Food);
 
+    e.target.reset();
+    setImage();
+    setImageURL();
   };
   useEffect(() => {
     if (!image) {
